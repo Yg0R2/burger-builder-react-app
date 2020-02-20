@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <h1>Hi there.</h1>
       <Person name="Szilvia" age="33" />
-      <Person name="Tibor" age="35" />
+      <Person name="Tibor" age="35" >My Hobbies: Coding</Person>
     </div>
   );
   // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi there.'));
