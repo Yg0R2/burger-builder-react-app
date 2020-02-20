@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Person from './Person/Person'
 import './App.css';
 
-class App extends Component{
-
-  // Managed inside of a Component
-  state = {
+const App = props => {
+  const [personsState, setPersonsState] = useState({
     persons: [
       {
         name: 'Szilvia',
@@ -16,12 +14,11 @@ class App extends Component{
         age: '35'
       }
     ]
-  };
+  });
 
-  switchNameHandler = () => {
-    // console.log('Was clicked');
-    // DO NOT manipulate state this way -> this.state.persons[0].name = 'new name';
-    this.setState({
+  const switchNameHandler = () => {
+    // This will REPLACE the data in 'personsState.persons'
+    setPersonsState({
       persons: [
         {
           name: 'Eva',
@@ -35,17 +32,14 @@ class App extends Component{
     });
   };
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Hi there.</h1>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} >My Hobbies: Coding</Person>
-      </div>
-    );
-  }
-
-}
+  return (
+    <div className="App">
+      <h1>Hi there.</h1>
+      <button onClick={switchNameHandler}>Switch Name</button>
+      <Person name={personsState.persons[0].name} age={personsState.persons[0].age} />
+      <Person name={personsState.persons[1].name} age={personsState.persons[1].age} >My Hobbies: Coding</Person>
+    </div>
+  );
+};
 
 export default App;
