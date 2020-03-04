@@ -18,7 +18,7 @@ class App extends Component{
     ]
   };
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     // console.log('Was clicked');
     // DO NOT manipulate state this way -> this.state.persons[0].name = 'new name';
     this.setState({
@@ -28,7 +28,7 @@ class App extends Component{
           age: '32'
         },
         {
-          name: 'Peter',
+          name: newName,
           age: '36'
         }
       ]
@@ -39,8 +39,9 @@ class App extends Component{
     return (
       <div className="App">
         <h1>Hi there.</h1>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+        {/* Do not use this; Can cause performance issues. Use `.bind(...)` instead. */}
+        <button onClick={() => this.switchNameHandler('Peter')}>Switch Name</button>
+        <Person name={this.state.persons[0].name} click={this.switchNameHandler.bind(this, 'Gabor')} age={this.state.persons[0].age} />
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age} >My Hobbies: Coding</Person>
       </div>
     );
