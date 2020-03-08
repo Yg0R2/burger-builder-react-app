@@ -86,3 +86,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 - Ensure that the new input entered by the user overwrites the old username passed to UserOutput
 - Add two-way-binding to your input (in UserInput) to also display the starting username
 - Add styling of your choice to your components/ elements in the components - both with inline styles and stylesheets
+
+### #2
+
+- Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).
+- Create a new component (=> Validation) which receives the text length as a prop
+- Inside the Validation, either output "Text too short" or "Text long enough" depending on the text length (e.g. take 5 as a minimum length)
+- Create another component (=> Char) and style it as an inline box (=> display: inline-block, padding: 16px, text-align: center, margin: 16px, border: 1px solid black).
+- Render a list of CharComponents where each Char receives a different letter of the entered text (in the initial input field) as a prop.
+- When you click a Char, it should be removed from the entered text.
+
+Hint: Keep in mind that JavaScript strings are basically arrays!
