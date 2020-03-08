@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Person from './Person/Person'
 import './App.css';
 
-class App extends Component{
+class App extends Component {
 
   // Managed inside of a Component
   state = {
@@ -15,7 +15,8 @@ class App extends Component{
         name: 'Tibor',
         age: '35'
       }
-    ]
+    ],
+    showPersons: false
   };
 
   switchNameHandler = (newName) => {
@@ -50,6 +51,10 @@ class App extends Component{
     });
   };
 
+  togglePersonsHandler = () => {
+    this.setState({showPersons: !this.state.showPersons});
+  };
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -62,25 +67,30 @@ class App extends Component{
     return (
       <div className="App">
         <h1>Hi there.</h1>
-        {/* Do not use this; Can cause performance issues. Use `.bind(...)` instead. */}
         <button
           style={style}
-          onClick={() => this.switchNameHandler('Peter')}
+          onClick={this.togglePersonsHandler}
         >
-          Switch Name
+          Toggle People List
         </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler.bind(this, 'Gabor')}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          change={this.nameChangeHandler}
-        >
-          My Hobbies: Coding
-        </Person>
+        {
+          this.state.showPersons ?
+            <div>
+              <Person
+                name={this.state.persons[0].name}
+                age={this.state.persons[0].age}
+                click={this.switchNameHandler.bind(this, 'Gabor')}
+              />
+              <Person
+                name={this.state.persons[1].name}
+                age={this.state.persons[1].age}
+                change={this.nameChangeHandler}
+              >
+                My Hobbies: Coding
+              </Person>
+            </div>
+            : null
+        }
       </div>
     );
   }
