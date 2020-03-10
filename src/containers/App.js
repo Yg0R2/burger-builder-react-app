@@ -7,6 +7,11 @@ import styles from './App.module.css';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+  }
+
   // Managed inside of a Component
   state = {
     persons: [
@@ -28,6 +33,13 @@ class App extends Component {
     ],
     showPersons: false
   };
+
+  // Update/initialize state based on external changes (e.g.: from form)
+  // Do not cause side effects; do not send http request!
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps ', props);
+    return state;
+  }
 
   deletePersonHandler = (index) => {
     // DO NOT USE THIS!! Can cause unpredicted behaviours.
@@ -68,6 +80,8 @@ class App extends Component {
   };
 
   render() {
+    console.log('[App.js] render');
+
     let persons = null;
     if (this.state.showPersons) {
       persons = <Persons
@@ -88,6 +102,10 @@ class App extends Component {
         {persons}
       </div>
     );
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
   }
 
 }
