@@ -41,6 +41,11 @@ class App extends Component {
     return state;
   }
 
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
   deletePersonHandler = (index) => {
     // DO NOT USE THIS!! Can cause unpredicted behaviours.
     //const persons = this.state.persons;
@@ -106,6 +111,10 @@ class App extends Component {
 
   componentDidMount() {
     console.log('[App.js] componentDidMount');
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('[App.js] componentDidUpdate');
   }
 
 }
