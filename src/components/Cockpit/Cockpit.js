@@ -18,7 +18,7 @@ const Cockpit = (props) => {
       clearTimeout(timer);
       console.log('[Cockpit.js] cleanup in useEffect');
     }
-  }, [props.persons]);
+  }, []);
 
   useEffect(() => {
     console.log('[Cockpit.js] useEffect #2');
@@ -34,10 +34,10 @@ const Cockpit = (props) => {
   }
 
   let classes = [];
-  if (props.persons.length <= 2) {
+  if (props.personCount <= 2) {
     classes.push(styles.red);
   }
-  if (props.persons.length <= 1) {
+  if (props.personCount <= 1) {
     classes.push(styles.bold);
   }
 
@@ -55,4 +55,6 @@ const Cockpit = (props) => {
   );
 };
 
-export default Cockpit;
+// React can store a snapshot of this Component.
+// Only when the input changes of this Component, allows to re-render.
+export default React.memo(Cockpit);

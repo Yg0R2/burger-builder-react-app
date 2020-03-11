@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import Person from "./Person/Person";
 
-class Persons extends Component {
+// PureComponent implements Component with a complete props change validation, like now in shouldComponentUpdate.
+class Persons extends PureComponent {
 
   // Used for cleaning.
   componentWillUnmount() {
@@ -11,10 +12,15 @@ class Persons extends Component {
 
   // Can cancel the updating process.
   // Do not cause side effects; do not send http request!
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    console.log('[Persons.js] shouldComponentUpdate');
-    return true;
-  }
+  // shouldComponentUpdate(nextProps, nextState, nextContext) {
+  //   console.log('[Persons.js] shouldComponentUpdate');
+  //
+  //   // Not required to re-render Persons when it didn't change.
+  //   // It does a shallow comparison; checks only the pointers
+  //   return (nextProps.persons !== this.props.persons) ||
+  //     (nextProps.changeHandler !== this.props.changeHandler) ||
+  //     (nextProps.clickHandler !== this.props.clickHandler);
+  // }
 
   render() {
     console.log('[Persons.js] rendering..');
