@@ -1,8 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import styles from "./Cockpit.module.css";
 
 const Cockpit = (props) => {
+  // Can be used as componentDidMount/componentDidUpdate.
+  // Functional based Component doesn't have these functions.
+  // Can be limited with the 2. parameter; will executed when that changed.
+  // With an [] (empty array) it will behave like componentDidMount.
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect');
+    // Fake http request
+    setTimeout(() => {
+      alert('Saved data to cloud!');
+    }, 1000);
+  }, [props.persons]);
+
   let buttonClasses = [];
   if (props.showPersons) {
     buttonClasses.push(styles.red);
