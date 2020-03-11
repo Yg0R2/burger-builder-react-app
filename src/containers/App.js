@@ -20,17 +20,17 @@ class App extends Component {
       {
         id: 1,
         name: 'Szilvia',
-        age: '33'
+        age: 33
       },
       {
         id: 2,
         name: 'Tibor',
-        age: '35'
+        age: 35
       },
       {
         id: 3,
         name: 'Peter',
-        age: '31'
+        age: 31
       }
     ],
     showPersons: false,
