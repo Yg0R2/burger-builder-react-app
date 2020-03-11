@@ -4,6 +4,11 @@ import Person from "./Person/Person";
 
 class Persons extends Component {
 
+  // Used for cleaning.
+  componentWillUnmount() {
+    console.log('[Persons.js] componentWillUnmount');
+  }
+
   // Can cancel the updating process.
   // Do not cause side effects; do not send http request!
   shouldComponentUpdate(nextProps, nextState, nextContext) {

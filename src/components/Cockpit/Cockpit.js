@@ -10,10 +10,23 @@ const Cockpit = (props) => {
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
     // Fake http request
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       alert('Saved data to cloud!');
     }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+      console.log('[Cockpit.js] cleanup in useEffect');
+    }
   }, [props.persons]);
+
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect #2');
+
+    return () => {
+      console.log('[Cockpit.js] cleanup in useEffect #2');
+    }
+  });
 
   let buttonClasses = [];
   if (props.showPersons) {
