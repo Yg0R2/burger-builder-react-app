@@ -33,7 +33,8 @@ class App extends Component {
         age: '31'
       }
     ],
-    showPersons: false
+    showPersons: false,
+    changeCounter: 0
   };
 
   // Update/initialize state based on external changes (e.g.: from form)
@@ -79,7 +80,19 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({persons: persons});
+    // This is not executed immediately, just scheduled for execution.
+    // 'state' can hold outdated data...
+    // this.setState({
+    //   persons: persons,
+    //   changeCounter: this.state.changeCounter + 1
+    // });
+    // Use this, when have to depend on the previous state.
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      }
+    });
   };
 
   togglePersonsHandler = () => {
