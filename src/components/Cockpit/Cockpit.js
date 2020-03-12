@@ -1,21 +1,19 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 
 import styles from "./Cockpit.module.css";
 
 const Cockpit = (props) => {
+  const toggleButtonRef = useRef(null);
+
   // Can be used as componentDidMount/componentDidUpdate.
   // Functional based Component doesn't have these functions.
   // Can be limited with the 2. parameter; will executed when that changed.
   // With an [] (empty array) it will behave like componentDidMount.
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
-    // Fake http request
-    const timer = setTimeout(() => {
-      alert('Saved data to cloud!');
-    }, 1000);
+    toggleButtonRef.current.click();
 
     return () => {
-      clearTimeout(timer);
       console.log('[Cockpit.js] cleanup in useEffect');
     }
   }, []);
@@ -46,6 +44,7 @@ const Cockpit = (props) => {
       <h1>This is {props.title} application.</h1>
       <p className={classes.join(' ')}>This is really working!</p>
       <button
+        ref={toggleButtonRef}
         className={buttonClasses.join(' ')}
         onClick={props.clickHandler}
       >

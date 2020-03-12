@@ -7,6 +7,17 @@ import styles from './Person.module.css';
 
 class Person extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.selectedElementRef = React.createRef();
+  }
+
+  componentDidMount() {
+    //this.selectedElement.focus();
+    this.selectedElementRef.current.focus();
+  }
+
   render() {
     console.log('[Person.js] rendering...');
 
@@ -14,7 +25,14 @@ class Person extends Component {
       <React.Fragment>
         <p onClick={this.props.clickHandler}>I am {this.props.name} and I am {this.props.age} years old!</p>
         <p>{this.props.children}</p>
-        <input type="text" onChange={this.props.changeHandler} value={this.props.name}/>
+        <input
+          // Old way of creating ref
+          //ref={(element) => {this.selectedElement = element}}
+          ref={this.selectedElementRef}
+          type="text"
+          onChange={this.props.changeHandler}
+          value={this.props.name}
+        />
       </React.Fragment>
     )
   }
