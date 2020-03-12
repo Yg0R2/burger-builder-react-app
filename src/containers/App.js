@@ -34,7 +34,8 @@ class App extends Component {
       }
     ],
     showPersons: false,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   };
 
   // Update/initialize state based on external changes (e.g.: from form)
@@ -99,6 +100,10 @@ class App extends Component {
     this.setState({showPersons: !this.state.showPersons});
   };
 
+  loginHandler = () => {
+    this.setState({authenticated: true});
+  };
+
   render() {
     console.log('[App.js] render');
 
@@ -108,6 +113,7 @@ class App extends Component {
         persons={this.state.persons}
         clickHandler={this.deletePersonHandler}
         changeHandler={this.nameChangeHandler}
+        isAuthenticated={this.state.authenticated}
       />;
     }
 
@@ -118,6 +124,7 @@ class App extends Component {
           showPersons={this.state.showPersons}
           personCount={this.state.persons.length}
           clickHandler={this.togglePersonsHandler}
+          loginHandler={this.loginHandler}
         />
         {persons}
       </React.Fragment>
