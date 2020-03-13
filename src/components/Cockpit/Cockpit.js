@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useContext, useEffect, useRef} from "react";
 
 import AuthContext from "../../context/auth-context";
 
@@ -6,6 +6,8 @@ import styles from "./Cockpit.module.css";
 
 const Cockpit = (props) => {
   const toggleButtonRef = useRef(null);
+  // The result will be the same like in class based component
+  const authContext = useContext(AuthContext);
 
   // Can be used as componentDidMount/componentDidUpdate.
   // Functional based Component doesn't have these functions.
@@ -52,9 +54,7 @@ const Cockpit = (props) => {
       >
         Toggle People List
       </button>
-      <AuthContext.Consumer>
-        {(context) => <button onClick={context.loginFunction}>Log in</button>}
-      </AuthContext.Consumer>
+        <button onClick={authContext.loginFunction}>Log in</button>
     </div>
   );
 };

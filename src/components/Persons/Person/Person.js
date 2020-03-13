@@ -9,6 +9,10 @@ import styles from './Person.module.css';
 
 class Person extends Component {
 
+  // Static means, can be accessed from outside.
+  // Because of this, 'this.context' become available inside of the class.
+  static contextType = AuthContext;
+
   constructor(props) {
     super(props);
 
@@ -18,6 +22,8 @@ class Person extends Component {
   componentDidMount() {
     //this.selectedElement.focus();
     this.selectedElementRef.current.focus();
+
+    console.log(this.context);
   }
 
   render() {
@@ -26,9 +32,7 @@ class Person extends Component {
     return (
       <React.Fragment>
         <p>
-          <AuthContext.Consumer>
-            {(context) => context.isAuthenticated ? "Authenticated!" : "Please log in"}
-          </AuthContext.Consumer>
+          {this.context.isAuthenticated ? "Authenticated!" : "Please log in"}
         </p>
         <p onClick={this.props.clickHandler}>I am {this.props.name} and I am {this.props.age} years old!</p>
         <p>{this.props.children}</p>
