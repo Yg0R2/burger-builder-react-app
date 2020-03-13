@@ -3,6 +3,8 @@ import React, {Component, Fragment} from 'react';
 import Cockpit from '../components/Cockpit/Cockpit'
 import Persons from '../components/Persons/Persons'
 
+import AuthContext from "../context/auth-context";
+
 import withClass from '../hoc/withClass'
 
 import styles from './App.module.css';
@@ -35,7 +37,7 @@ class App extends Component {
     ],
     showPersons: false,
     changeCounter: 0,
-    authenticated: false
+    isAuthenticated: false
   };
 
   // Update/initialize state based on external changes (e.g.: from form)
@@ -101,7 +103,7 @@ class App extends Component {
   };
 
   loginHandler = () => {
-    this.setState({authenticated: true});
+    this.setState({isAuthenticated: true});
   };
 
   render() {
@@ -113,20 +115,25 @@ class App extends Component {
         persons={this.state.persons}
         clickHandler={this.deletePersonHandler}
         changeHandler={this.nameChangeHandler}
-        isAuthenticated={this.state.authenticated}
       />;
     }
 
     return (
       <React.Fragment>
-        <Cockpit
-          title={this.props.title}
-          showPersons={this.state.showPersons}
-          personCount={this.state.persons.length}
-          clickHandler={this.togglePersonsHandler}
-          loginHandler={this.loginHandler}
-        />
-        {persons}
+        <AuthContext.Provider
+          value={{
+            isAuthenticated: this.state.isAuthenticated,
+            loginFunction: this.loginHandler
+          }}
+        >
+          <Cockpit
+            title={this.props.title}
+            showPersons={this.state.showPersons}
+            personCount={this.state.persons.length}
+            clickHandler={this.togglePersonsHandler}
+          />
+          {persons}
+        </AuthContext.Provider>
       </React.Fragment>
     );
   }
