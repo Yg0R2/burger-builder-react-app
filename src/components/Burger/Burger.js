@@ -2,7 +2,7 @@ import React from "react";
 
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 
-import styles from './Burger.module.css'
+import styles from './Burger.module.css';
 
 const burger = (props) => {
 
