@@ -5,10 +5,10 @@ import BuildControl from './BuildControl/BuildControl';
 import styles from './BuildControls.module.css';
 
 const controls = [
-  {label: 'Salad', type: 'salad'},
   {label: 'Bacon', type: 'bacon'},
   {label: 'Cheese', type: 'cheese'},
-  {label: 'Meat', type: 'meat'}
+  {label: 'Meat', type: 'meat'},
+  {label: 'Salad', type: 'salad'}
 ];
 
 const buildControls = (props) => (
@@ -23,6 +23,13 @@ const buildControls = (props) => (
         disabled={props.disabledInfo[control.type]}
       />
     ))}
+    <button
+      className={styles.orderButton}
+      disabled={!props.purchasable}
+      onClick={props.openOrderHandler}
+    >
+      Order Now
+    </button>
   </div>
 );
 
