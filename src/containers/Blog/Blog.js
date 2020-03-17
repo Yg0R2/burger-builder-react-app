@@ -4,7 +4,8 @@ import Post from '../../components/Post/Post';
 import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 
-import axios from 'axios';
+//import axios from 'axios';
+import axiosInstance from '../../axios';
 
 import './Blog.css';
 
@@ -17,7 +18,7 @@ class Blog extends Component {
   };
 
   componentDidMount() {
-    axios.get('/posts')
+    axiosInstance.get('/posts')
       .then(response => {
         const posts = response.data.slice(0, 4)
           .map(post => {
