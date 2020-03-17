@@ -5,14 +5,36 @@ import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 
 import styles from './Layout.module.css';
 
-const layout = (props) => (
-  <React.Fragment>
-    <Toolbar />
-    <SideDrawer />
-    <main className={styles.content}>
-      {props.children}
-    </main>
-  </React.Fragment>
-);
+class Layout extends React.Component {
 
-export default layout;
+  state = {
+    displaySideDrawer: false
+  };
+
+  sideDrawerCloseHandler = () => {
+    this.setState({displaySideDrawer: false});
+  };
+
+  sideDrawerToggleHandler = () => {
+    // Can cause unexpected error. Do not use it.
+    // this.setState({displaySideDrawer: !this.state.displaySideDrawer});
+    this.setState((prevState) => {
+      return {displaySideDrawer: !prevState.displaySideDrawer};
+    });
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        <Toolbar drawerToggleClickHandler={this.sideDrawerToggleHandler} />
+        <SideDrawer display={this.state.displaySideDrawer} closeHandler={this.sideDrawerCloseHandler} />
+        <main className={styles.content}>
+          {this.props.children}
+        </main>
+      </React.Fragment>
+    );
+  }
+
+}
+
+export default Layout;
