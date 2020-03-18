@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 
 import Post from "../../../components/Post/Post";
 
@@ -38,16 +39,16 @@ class Posts extends React.Component {
     let posts;
     if (this.state.error) {
       posts = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
-    }
-    else {
+    } else {
       posts = this.state.posts
         .map(post => {
-          return <Post
-            key={post.id}
-            clickHandler={() => this.postSelectedHandler(post.id)}
-            title={post.title}
-            author={post.author}
-          />
+          return <Link to={'/' + post.id} key={post.id}>
+            <Post
+              clickHandler={() => this.postSelectedHandler(post.id)}
+              title={post.title}
+              author={post.author}
+            />
+          </Link>
         });
     }
 
