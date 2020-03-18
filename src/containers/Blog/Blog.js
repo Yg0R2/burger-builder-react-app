@@ -45,8 +45,9 @@ class Blog extends Component {
         <Switch>
           {this.state.authenticated ? <Route path="/new-post" component={NewPost} /> : null}
           <Route path="/posts" component={Posts} />
-          <Redirect from="/" to="/posts" />
+          {/*<Redirect from="/" to="/posts" />*/}
           {/*<Route path="/" component={Posts} />*/}
+          <Route render={() => <h1>Page Not Found!</h1>}/>
         </Switch>
       </div>
     );
