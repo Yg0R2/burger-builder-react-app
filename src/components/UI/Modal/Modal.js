@@ -7,7 +7,7 @@ import styles from './Modal.module.css';
 class Modal extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return nextProps.display !== this.props.display;
+    return (nextProps.display !== this.props.display) || (nextProps.children !== this.props.children);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
