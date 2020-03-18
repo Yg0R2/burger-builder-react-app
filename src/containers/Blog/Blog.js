@@ -8,6 +8,10 @@ import './Blog.css';
 
 class Blog extends Component {
 
+  state = {
+    authenticated: false
+  };
+
   render() {
     return (
       <div className="blog">
@@ -39,7 +43,7 @@ class Blog extends Component {
         <Route path="/" render={() => <h1>home 2</h1>} />
         */}
         <Switch>
-          <Route path="/new-post" component={NewPost} />
+          {this.state.authenticated ? <Route path="/new-post" component={NewPost} /> : null}
           <Route path="/posts" component={Posts} />
           <Redirect from="/" to="/posts" />
           {/*<Route path="/" component={Posts} />*/}
