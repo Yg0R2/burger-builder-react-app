@@ -1,15 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component, Suspense} from 'react';
 import {NavLink, Redirect, Route, Switch} from 'react-router-dom';
 
 import Posts from './Posts/Posts';
 
-import asyncComponent from '../../hoc/asyncComponent';
-
 import './Blog.css';
 
-const AsyncNewPost = asyncComponent(() => {
-  return import('./NewPost/NewPost');
-});
+const NewPost = React.lazy(() => import('./NewPost/NewPost'));
 
 class Blog extends Component {
 
@@ -48,7 +44,14 @@ class Blog extends Component {
         <Route path="/" render={() => <h1>home 2</h1>} />
         */}
         <Switch>
-          {this.state.authenticated ? <Route path="/new-post" component={AsyncNewPost} /> : null}
+          {
+            this.state.authenticated
+              ? <Route path="/new-post" render={() => (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <NewPost />
+                </Suspense>
+              )}/>
+              : null}
           <Route path="/posts" component={Posts} />
           {/*<Redirect from="/" to="/posts" />*/}
           {/*<Route path="/" component={Posts} />*/}
