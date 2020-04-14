@@ -1,0 +1,19 @@
+.exercise {
+    display: inline;
+    text-align: center;
+}
+
+.exercise ul {
+    padding-inline-start: 0;
+}
+
+.exercise li {
+    margin: 0 10px;
+    box-sizing: border-box;
+    display: inline;
+    width: 100%;
+}
+
+.exercise a {
+    text-decoration: none;
+}

@@ -1,0 +1,28 @@
+.navigation {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline;
+    text-align: center;
+    height: 100px;
+    width: 100%;
+}
+
+.navigation ul {
+    padding-inline-start: 0;
+}
+
+.navigation li {
+    margin: 0 10px;
+    box-sizing: border-box;
+    display: inline;
+    width: 100%;
+}
+
+.navigation a {
+    color: #8F5C2C;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    display: inline;
+}
