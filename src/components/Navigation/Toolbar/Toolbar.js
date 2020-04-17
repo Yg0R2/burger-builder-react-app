@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import Logo from '../../Logo/Logo';

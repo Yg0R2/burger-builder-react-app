@@ -1,7 +1,7 @@
 import React from 'react';
 // import {withRouter} from 'react-router-dom';
 
-import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
+import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 import styles from './Burger.module.css';
 

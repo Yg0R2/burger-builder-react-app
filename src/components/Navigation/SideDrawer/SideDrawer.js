@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Logo from '../../Logo/Logo';

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';

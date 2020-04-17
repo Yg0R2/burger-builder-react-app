@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
@@ -7,7 +7,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 import axiosOrders from '../../axios-orders';
-import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 const INGREDIENT_PRICES = {
   bacon: 0.7,
