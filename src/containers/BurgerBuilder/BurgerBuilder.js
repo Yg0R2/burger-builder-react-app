@@ -86,6 +86,15 @@ class BurgerBuilder extends React.Component {
     //   .catch(error => {
     //     this.setState({displayOrder: false, savingOrder: false})
     //   });
+    const queryParams = [];
+    for (let it in this.state.ingredients) {
+      queryParams.push(encodeURIComponent(it) + '=' + encodeURIComponent(this.state.ingredients[it]))
+    }
+
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryParams.join('&')
+    });
   };
 
   removeIngredientHandler = (type) => {
