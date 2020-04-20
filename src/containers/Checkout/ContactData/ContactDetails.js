@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from '../../../components/UI/Button/Button';
+import Input from '../../../components/UI/Input/Input';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 
 import axiosOrders from '../../../axios-orders';
@@ -56,11 +57,11 @@ class ContactDetails extends React.Component{
       ? <Spinner />
       : (
         <form>
-          <input type="text" name="name" placeholder="Your name" />
-          <input type="text" name="emailAddress" placeholder="Your email address" />
-          <input type="text" name="street" placeholder="Your street" />
-          <input type="text" name="zipCode" placeholder="Your zip code" />
-          <input type="text" name="country" placeholder="Your country" />
+          <Input name="name" placeholder="Your name" />
+          <Input name="emailAddress" placeholder="Your email address" />
+          <Input name="street" placeholder="Your street" />
+          <Input name="zipCode" placeholder="Your zip code" />
+          <Input name="country" placeholder="Your country" />
           <Button type="success" clickHandler={this.orderHandler}>ORDER</Button>
         </form>
       );
