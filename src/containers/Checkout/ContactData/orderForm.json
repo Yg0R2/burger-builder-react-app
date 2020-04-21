@@ -1,0 +1,58 @@
+{
+  "name": {
+    "elementType": "input",
+    "elementProps": {
+      "type": "text",
+      "placeholder": "Your name"
+    },
+    "value": ""
+  },
+  "emailAddress": {
+    "elementType": "input",
+    "elementProps": {
+      "type": "email",
+      "placeholder": "Your email address"
+    },
+    "value": ""
+  },
+  "address.street": {
+    "elementType": "input",
+    "elementProps": {
+      "type": "text",
+      "placeholder": "Your street"
+    },
+    "value": ""
+  },
+  "address.zipCode": {
+    "elementType": "input",
+    "elementProps": {
+      "type": "text",
+      "placeholder": "Your zip cod"
+    },
+    "value": ""
+  },
+  "address.country": {
+    "elementType": "input",
+    "elementProps": {
+      "type": "text",
+      "placeholder": "Your country"
+    },
+    "value": ""
+  },
+  "deliveryMethod": {
+    "elementType": "select",
+    "elementProps": {
+      "options": [
+        {
+          "value": "fastest",
+          "displayValue": "Fastest",
+          "selected": true
+        },
+        {
+          "value": "cheapest",
+          "displayValue": "Cheapest"
+        }
+      ]
+    }
+  }
+}

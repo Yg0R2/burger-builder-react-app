@@ -8,16 +8,12 @@ import axiosOrders from '../../../axios-orders';
 
 import './ContactDetails.css';
 
+import orderForm from './orderForm';
+
 class ContactDetails extends React.Component{
 
   state = {
-    name: 'Test',
-    emailAddress: 'test@test.com',
-    address: {
-      street: 'No street 1',
-      zipCode: '1234AB',
-      country: 'Netherlands'
-    },
+    orderForm,
     savingOrder: false
   };
 
@@ -29,15 +25,6 @@ class ContactDetails extends React.Component{
     const order = {
       ingredients: this.props.ingredients,
       totalPrice: this.props.totalPrice,
-      customer: {
-        name: 'Test',
-        emailAddress: 'test@test.com',
-        address: {
-          street: 'No street 1',
-          zipCode: '1234AB',
-          country: 'Netherlands'
-        }
-      },
       deliveryMethod: 'fastest'
     };
 
@@ -52,16 +39,33 @@ class ContactDetails extends React.Component{
       });
   };
 
+  inputChangedHandler = (event, inputIdentifier) => {
+  };
+
   render() {
+    const orderFormElements = [];
+    for (let name in this.state.orderForm) {
+      orderFormElements.push({
+        id: name,
+        config: this.state.orderForm[name]
+      })
+    }
+
     const form = this.state.savingOrder
       ? <Spinner />
       : (
         <form>
-          <Input name="name" placeholder="Your name" />
-          <Input name="emailAddress" placeholder="Your email address" />
-          <Input name="street" placeholder="Your street" />
-          <Input name="zipCode" placeholder="Your zip code" />
-          <Input name="country" placeholder="Your country" />
+          {orderFormElements
+            .map(formElement => (
+              <Input
+                key={formElement.id}
+                elementType={formElement.config.elementType}
+                changeHandler={this.inputChangedHandler}
+                elementProps={formElement.config.elementProps}
+                value={formElement.config.value}
+              />
+            ))
+          }
           <Button type="success" clickHandler={this.orderHandler}>ORDER</Button>
         </form>
       );

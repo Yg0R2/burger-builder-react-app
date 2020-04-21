@@ -4,16 +4,48 @@ import styles from './Input.module.css';
 
 const input = (props) => {
 
-  let inputElement = null;
-  switch (props.input_type) {
-    case ('textarea'):
-      inputElement = <textarea {...props} />;
-      break;
+  let inputElement;
+  switch (props.elementType) {
     case ('input'):
-      inputElement = <input className={styles.inputElement} {...props} />;
+      inputElement = <input
+        className={styles.inputElement}
+        onChange={props.changeHandler}
+        {...props.elementProps}
+        value={props.value}
+      />;
+      break;
+    case ('select'):
+      inputElement = <select
+        className={styles.inputElement}
+        onChange={props.changeHandler}
+        value={props.value}
+      >
+        {props.elementProps.options
+          .map(option => (
+            <option key={option.value} value={option.value}>
+              {option.displayValue}
+            </option>
+          ))
+        }
+      </select>;
+    break;
+    case ('textarea'):
+      inputElement = <textarea
+        className={styles.inputElement}
+        onChange={props.changeHandler}
+        {...props.elementProps}
+        value={props.value}
+      />;
       break;
     default:
-      inputElement = <input className={styles.inputElement} type="text" {...props} />;
+      inputElement = <input
+        className={styles.inputElement}
+        onChange={props.changeHandler}
+        type="text"
+        {...props.elementProps}
+        value={props.value}
+      />;
+      break;
   }
 
   return (
@@ -22,6 +54,7 @@ const input = (props) => {
       {inputElement}
     </div>
   );
+
 };
 
 export default input;
