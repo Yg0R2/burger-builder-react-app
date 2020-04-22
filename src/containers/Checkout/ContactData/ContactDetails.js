@@ -40,6 +40,17 @@ class ContactDetails extends React.Component{
   };
 
   inputChangedHandler = (event, inputIdentifier) => {
+    const updatedOrderForm = {
+      ...this.state.orderForm
+    };
+
+    const updatedFormElement = {
+      ...updatedOrderForm[inputIdentifier]
+    };
+
+    updatedFormElement.value = event.target.value;
+    updatedOrderForm[inputIdentifier] = updatedFormElement;
+    this.setState({orderForm: updatedOrderForm});
   };
 
   render() {
@@ -60,7 +71,7 @@ class ContactDetails extends React.Component{
               <Input
                 key={formElement.id}
                 elementType={formElement.config.elementType}
-                changeHandler={this.inputChangedHandler}
+                changeHandler={(event) => this.inputChangedHandler(event, formElement.id)}
                 elementProps={formElement.config.elementProps}
                 value={formElement.config.value}
               />
