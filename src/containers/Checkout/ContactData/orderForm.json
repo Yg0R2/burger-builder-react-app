@@ -15,7 +15,7 @@
     },
     "value": ""
   },
-  "address.street": {
+  "street": {
     "elementType": "input",
     "elementProps": {
       "type": "text",
@@ -23,7 +23,7 @@
     },
     "value": ""
   },
-  "address.zipCode": {
+  "zipCode": {
     "elementType": "input",
     "elementProps": {
       "type": "text",
@@ -31,7 +31,7 @@
     },
     "value": ""
   },
-  "address.country": {
+  "country": {
     "elementType": "input",
     "elementProps": {
       "type": "text",

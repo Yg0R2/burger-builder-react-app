@@ -22,10 +22,15 @@ class ContactDetails extends React.Component{
 
     this.setState({savingOrder: true});
 
+    const formData = {};
+    for (let formElement in this.state.orderForm) {
+      formData[formElement] = this.state.orderForm[formElement].value;
+    }
+
     const order = {
       ingredients: this.props.ingredients,
       totalPrice: this.props.totalPrice,
-      deliveryMethod: 'fastest'
+      contactDetails: formData
     };
 
     axiosOrders.post('/orders.json', order)
@@ -65,7 +70,7 @@ class ContactDetails extends React.Component{
     const form = this.state.savingOrder
       ? <Spinner />
       : (
-        <form>
+        <form onSubmit={this.orderHandler}>
           {orderFormElements
             .map(formElement => (
               <Input
