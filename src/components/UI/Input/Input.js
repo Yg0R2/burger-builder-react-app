@@ -5,8 +5,12 @@ import styles from './Input.module.css';
 const input = (props) => {
 
   const inputClasses = [styles.inputElement];
+  let validationErrorMessage = null;
+
   if (!props.isValid && props.shouldValidate && props.touched) {
-    inputClasses.push(styles.invalid)
+    inputClasses.push(styles.invalid);
+
+    validationErrorMessage = <p className={styles.validationError}>Please enter valid value!</p>;
   }
 
   let inputElement;
@@ -56,6 +60,7 @@ const input = (props) => {
   return (
     <div className={styles.input}>
       <label className={styles.label}>{props.label}</label>
+      {validationErrorMessage}
       {inputElement}
     </div>
   );
