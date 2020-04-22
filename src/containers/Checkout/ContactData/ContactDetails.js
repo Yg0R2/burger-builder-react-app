@@ -13,6 +13,7 @@ import orderForm from './orderForm';
 class ContactDetails extends React.Component{
 
   state = {
+    formIsValid: false,
     orderForm,
     savingOrder: false
   };
@@ -30,7 +31,16 @@ class ContactDetails extends React.Component{
     updatedFormElement.isValid = this.inputValidation(updatedFormElement.value, updatedFormElement.validation);
     updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
-    this.setState({orderForm: updatedOrderForm});
+
+    let formIsValid = true;
+    for (let formElement in updatedOrderForm) {
+      formIsValid = formIsValid && updatedOrderForm[formElement].isValid;
+    }
+
+    this.setState({
+      orderForm: updatedOrderForm,
+      formIsValid: formIsValid
+    });
   };
 
   inputValidation(value, rules) {
@@ -103,7 +113,13 @@ class ContactDetails extends React.Component{
               />
             ))
           }
-          <Button type="success" clickHandler={this.orderHandler}>ORDER</Button>
+          <Button
+            type="success"
+            clickHandler={this.orderHandler}
+            disabled={!this.state.formIsValid}
+          >
+            ORDER
+          </Button>
         </form>
       );
 
