@@ -5,6 +5,9 @@
       "type": "text",
       "placeholder": "Your name"
     },
+    "validation": {
+      "required": true
+    },
     "value": ""
   },
   "emailAddress": {
@@ -12,6 +15,9 @@
     "elementProps": {
       "type": "email",
       "placeholder": "Your email address"
+    },
+    "validation": {
+      "required": true
     },
     "value": ""
   },
@@ -21,6 +27,9 @@
       "type": "text",
       "placeholder": "Your street"
     },
+    "validation": {
+      "required": true
+    },
     "value": ""
   },
   "zipCode": {
@@ -29,6 +38,11 @@
       "type": "text",
       "placeholder": "Your zip cod"
     },
+    "validation": {
+      "required": true,
+      "minLength": 4,
+      "maxLength": 6
+    },
     "value": ""
   },
   "country": {
@@ -36,6 +50,9 @@
     "elementProps": {
       "type": "text",
       "placeholder": "Your country"
+    },
+    "validation": {
+      "required": true
     },
     "value": ""
   },

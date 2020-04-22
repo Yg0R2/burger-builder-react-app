@@ -17,6 +17,38 @@ class ContactDetails extends React.Component{
     savingOrder: false
   };
 
+  inputChangedHandler = (event, inputIdentifier) => {
+    const updatedOrderForm = {
+      ...this.state.orderForm
+    };
+
+    const updatedFormElement = {
+      ...updatedOrderForm[inputIdentifier]
+    };
+
+    updatedFormElement.value = event.target.value;
+    updatedFormElement.isValid = this.inputValidation(updatedFormElement.value, updatedFormElement.validation);
+    updatedFormElement.touched = true;
+    updatedOrderForm[inputIdentifier] = updatedFormElement;
+    this.setState({orderForm: updatedOrderForm});
+  };
+
+  inputValidation(value, rules) {
+    let isValid = true;
+
+    if (isValid && rules.required) {
+      isValid = value.trim() !== '';
+    }
+    if (isValid && rules.minLength) {
+      isValid = value.length >= rules.minLength;
+    }
+    if (isValid && rules.maxLength) {
+      isValid = value.length <= rules.maxLength;
+    }
+
+    return isValid;
+  }
+
   orderHandler = (event) => {
     event.preventDefault();
 
@@ -44,20 +76,6 @@ class ContactDetails extends React.Component{
       });
   };
 
-  inputChangedHandler = (event, inputIdentifier) => {
-    const updatedOrderForm = {
-      ...this.state.orderForm
-    };
-
-    const updatedFormElement = {
-      ...updatedOrderForm[inputIdentifier]
-    };
-
-    updatedFormElement.value = event.target.value;
-    updatedOrderForm[inputIdentifier] = updatedFormElement;
-    this.setState({orderForm: updatedOrderForm});
-  };
-
   render() {
     const orderFormElements = [];
     for (let name in this.state.orderForm) {
@@ -78,6 +96,9 @@ class ContactDetails extends React.Component{
                 elementType={formElement.config.elementType}
                 changeHandler={(event) => this.inputChangedHandler(event, formElement.id)}
                 elementProps={formElement.config.elementProps}
+                isValid={formElement.config.isValid}
+                touched={formElement.config.touched}
+                shouldValidate={formElement.config.validation}
                 value={formElement.config.value}
               />
             ))
