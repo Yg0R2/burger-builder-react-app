@@ -44,6 +44,10 @@ class ContactDetails extends React.Component{
   };
 
   inputValidation(value, rules) {
+    if (!rules) {
+      return true;
+    }
+
     let isValid = true;
 
     if (isValid && rules.required) {
