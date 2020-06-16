@@ -2,3 +2,8 @@
     color: greenyellow;
     background-color: green;
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
