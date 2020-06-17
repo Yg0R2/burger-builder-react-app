@@ -1,5 +1,51 @@
+const cssRegex = /\.css$/;
+
 module.exports = {
   overrideWebpackConfig: ({ webpackConfig, cracoConfig, pluginOptions, context: { env, paths } }) => {
+
+    const lessRules = {
+      //oneOf: [{
+        test: cssRegex,
+        use: [
+          {
+            loader: require.resolve('style-loader')
+          },
+          {
+            loader: require.resolve('css-loader')
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: "postcss",
+              sourceMap: false
+            }
+          },
+          {
+            loader: require.resolve('./src/loaders/my-loader')
+          }
+        ]
+      //}]
+    };
+
+    const oneOfRule = webpackConfig.module.rules.find(rule => (
+      typeof rule.oneOf !== 'undefined'
+    ));
+
+    /*const appendTo = oneOfRule ? oneOfRule.oneOf : webpackConfig.module.rules;
+    appendTo.push(lessRules);*/
+    /*if (oneOfRule) {
+      oneOfRule.oneOf = [
+        lessRules,
+        ...oneOfRule.oneOf
+      ];
+    }
+    else {*/
+      webpackConfig.module.rules = [
+        lessRules,
+        ...webpackConfig.module.rules
+      ];
+    /*}*/
+    //console.log(appendTo);
 
     /*console.log("before")
     Object.entries(webpackConfig.module.rules)
@@ -50,7 +96,7 @@ module.exports = {
       }
     ];*/
 
-    //console.log(JSON.stringify(webpackConfig, null, 4));
+    console.log(JSON.stringify(webpackConfig, null, 4));
 
     // Always return the config object.
     return webpackConfig;

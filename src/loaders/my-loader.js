@@ -1,11 +1,19 @@
 const loaderUtils = require('loader-utils');
 const validateOptions = require('schema-utils');
 const styleLoader = require("style-loader");
+const path = require('path');
 
 module.exports.pitch = function (request) {
-  console.log("[my-loader]", loaderUtils.stringifyRequest(this, "!!" + request), loaderUtils.getOptions(this));
+  const requestString = loaderUtils.stringifyRequest(this, "!!" + request);
+  console.log("[my-loader]", requestString, loaderUtils.getOptions(this));
 
-  return request;
+  return `var content = require(${loaderUtils.stringifyRequest(this, `!!${request}`)});
+  
+  if (typeof content === 'string') {
+    content = [[module.id, content, '']];
+  }
+
+  module.exports = content.locals;`;
 
   /*let content = JSON.stringify(require(request));
 
