@@ -10,7 +10,7 @@
     "redux": "^4.0.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "craco start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -26,5 +26,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^5.6.4",
+    "css-loader": "^3.6.0",
+    "react-web-component-style-loader": "^0.1.4-alpha",
+    "style-loader": "^1.2.1"
   }
 }
