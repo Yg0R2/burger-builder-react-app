@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './ReactWebComponent.css';
+import styles from './ReactWebComponent.css';
 
 class ReactWebComponent extends React.Component {
 
@@ -12,7 +12,7 @@ class ReactWebComponent extends React.Component {
 
     return (
       <div className="wrapper" style={style}>
-        <div className="welcome">hello</div>
+        <div className={styles.welcome}>hello</div>
       </div>
     );
   }
