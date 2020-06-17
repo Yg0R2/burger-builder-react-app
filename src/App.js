@@ -4,6 +4,7 @@ import Counter from './containers/Counter/Counter';
 import './App.css';
 
 import './web-components/WebComponent';
+import './web-components/ReactWebComponent';
 
 class App extends Component {
 
