@@ -10,14 +10,17 @@ module.exports = {
         modules: [
           path.resolve(__dirname, './src/loaders')
         ]
-      },
-      module: {
+      },*/
+      /*module: {
         rules: [
           {
             test: /\.css$/,
             use: [
               {
-                loader: './src/loaders/my-loader'
+                loader: './src/loaders/my-loader',
+                options: {
+                  importLoaders: 4
+                }
               }
             ]
           }
@@ -31,7 +34,7 @@ module.exports = {
               {
                 loader: "react-web-component-style-loader",
                 options: {
-                  importLoaders: 1
+                  importLoaders: 4
                 }
               }
             ]

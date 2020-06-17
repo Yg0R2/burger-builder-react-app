@@ -3,6 +3,8 @@ const validateOptions = require('schema-utils');
 const styleLoader = require("style-loader");
 
 module.exports.pitch = function (request) {
+  console.log("[my-loader]", loaderUtils.stringifyRequest(this, "!!" + request), loaderUtils.getOptions(this));
+
   return request;
 
   /*let content = JSON.stringify(require(request));
