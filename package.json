@@ -7,7 +7,10 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "css-loader": "^3.6.0",
+    "react-web-component-style-loader": "^0.1.4-alpha",
+    "style-loader": "^1.2.1"
   },
   "scripts": {
     "start": "craco start",
@@ -28,9 +31,6 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^5.6.4",
-    "css-loader": "^3.6.0",
-    "react-web-component-style-loader": "^0.1.4-alpha",
-    "style-loader": "^1.2.1"
+    "@craco/craco": "^5.6.4"
   }
 }
