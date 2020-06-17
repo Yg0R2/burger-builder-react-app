@@ -6,7 +6,7 @@ module.exports = {
   webpack: {
     configure: {
       //Doesnt load other loaders because of this
-      resolveLoader: {
+      /*resolveLoader: {
         modules: [
           path.resolve(__dirname, './src/loaders')
         ]
@@ -22,7 +22,7 @@ module.exports = {
             ]
           }
         ]
-      }
+      }*/
       /*module: {
         rules: [
           {

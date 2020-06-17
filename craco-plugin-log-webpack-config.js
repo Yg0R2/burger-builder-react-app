@@ -4,6 +4,17 @@ module.exports = {
       console.log(pluginOptions.preText);
     }
 
+    webpackConfig.module.rules = [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "react-web-component-style-loader"
+          }
+        ]
+      }
+    ];
+
     /*webpackConfig.module.rules = [
       ...webpackConfig.module.rules,
       {
