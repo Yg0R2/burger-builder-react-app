@@ -1,26 +1,43 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = loader;
+
 const loaderUtils = require('loader-utils');
 const validateOptions = require('schema-utils');
 const styleLoader = require("style-loader");
 const path = require('path');
 
-module.exports.pitch = function (request) {
+function loader(content, map, meta) {
+  console.log("hihi", content);
+
+  return "";
+}
+
+/*module.exports.pitch*/ const a = function (request) {
   const requestString = loaderUtils.stringifyRequest(this, "!!" + request);
   console.log("[my-loader]", requestString, loaderUtils.getOptions(this));
 
   return `if(module.hot) {
-    var content = require(${requestString});
+    module.hot.accept(${requestString}, function() {
+      var content = require(${requestString});
 
-    if(typeof content === 'string') {
-      content = [[module.id, content, '']];
-    }
+      if(typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      console.log("content", content);
+    });
+
+    var content = require(${requestString});
 
     var style = document.createElement('style');
     style.setAttribute('type', 'text/css');
     style.textContent = content;
     
     document.getElementById('root').appendChild(style);
-
-    console.log(content);
   }`
   //return `module.exports = {}`
   /*return `var content = require(${loaderUtils.stringifyRequest(this, `!!${request}`)});

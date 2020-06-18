@@ -5,6 +5,18 @@ const logWebpackConfigPlugin = require("./craco-plugin-log-webpack-config");
 module.exports = {
   webpack: {
     configure: {
+      module: {
+        rules: [
+          {
+            test: /\.css$/,
+            use: [
+              {
+                loader: require.resolve('./src/loaders/my-loader')
+              }
+            ]
+          }
+        ]
+      }
       //Doesnt load other loaders because of this
       /*resolveLoader: {
         modules: [
@@ -43,12 +55,12 @@ module.exports = {
       }*/
     }
   },
-  plugins: [
+  /*plugins: [
     {
       plugin: logWebpackConfigPlugin,
       options: {
         preText: "Will log the webpack config:"
       }
     }
-  ]
+  ]*/
 };
