@@ -1,19 +1,31 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = loader;
-
 const loaderUtils = require('loader-utils');
 const validateOptions = require('schema-utils');
 const styleLoader = require("style-loader");
 const path = require('path');
 
-function loader(content, map, meta) {
+/*module.exports.pitch = function(remainingRequest, precedingRequest, data) {
+  return `console.log("hihi")`;
+}*/
+
+module.exports = function loader(content, map, meta) {
+  const options = this.getOptions || {}
+  this.cacheable(options.flag = true)
+
+  const callback = this.async();
+
   console.log("hihi", content);
 
-  return "";
+  //document.createElement('div');
+
+  return callback(null, "", map);
+  //return callback(null, content, map);
+  /*require("postcss")()
+    .process(content, {})
+    .then(result => {
+      return callback(null, `module.exports = function() {console.log(${content})}`);
+    })*/
 }
 
 /*module.exports.pitch*/ const a = function (request) {

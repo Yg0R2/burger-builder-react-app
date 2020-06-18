@@ -8,59 +8,52 @@ module.exports = {
       module: {
         rules: [
           {
-            test: /\.css$/,
-            use: [
+            test: /\.css$/i,
+            use: [//'style-loader', 'css-loader'
+              /*'style-loader',
               {
-                loader: require.resolve('./src/loaders/my-loader')
-              }
-            ]
+                loader: 'css-loader',
+                options: {
+                  importLoaders: 1,
+                  sourceMap: false
+                }
+              },*/
+              /*{
+                loader: path.resolve('./src/loaders/my-loader'),
+              },*/
+              /*{
+                loader: 'postcss-loader',
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [
+                    /*require('postcss-flexbugs-fixes'),
+                    require('postcss-preset-env')({
+                      autoprefixer: {
+                        flexbox: 'no-2009',
+                      },
+                      stage: 3,
+                    }),
+                    // Adds PostCSS Normalize as the reset css with default options,
+                    // so that it honors browserslist config in package.json
+                    // which in turn let's users customize the target behavior as per their needs.
+                    require('postcss-normalize'),*/
+                  /*],
+                  sourceMap: false
+                }
+              }*/
+            ],
+            //sideEffects: true
           }
         ]
       }
-      //Doesnt load other loaders because of this
-      /*resolveLoader: {
-        modules: [
-          path.resolve(__dirname, './src/loaders')
-        ]
-      },*/
-      /*module: {
-        rules: [
-          {
-            test: /\.css$/,
-            use: [
-              {
-                loader: './src/loaders/my-loader',
-                options: {
-                  importLoaders: 4
-                }
-              }
-            ]
-          }
-        ]
-      }*/
-      /*module: {
-        rules: [
-          {
-            test: /\.css$/,
-            use: [
-              {
-                loader: "react-web-component-style-loader",
-                options: {
-                  importLoaders: 4
-                }
-              }
-            ]
-          }
-        ]
-      }*/
     }
   },
-  /*plugins: [
+  plugins: [
     {
       plugin: logWebpackConfigPlugin,
       options: {
         preText: "Will log the webpack config:"
       }
     }
-  ]*/
+  ]
 };
