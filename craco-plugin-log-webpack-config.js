@@ -8,21 +8,30 @@ module.exports = {
         test: cssRegex,
         use: [
           {
-            loader: require.resolve('style-loader')
+            loader: require.resolve('style-loader'),
+            options: {
+              insert: 'body'
+            }
           },
+          /*{
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1
+            }
+          },*/
           {
-            loader: require.resolve('css-loader')
+            loader: require.resolve('./src/loaders/my-loader'),
+            options: {
+              importLoaders: 1
+            }
           },
-          {
+          /*{
             loader: require.resolve('postcss-loader'),
             options: {
               ident: "postcss",
               sourceMap: false
             }
-          },
-          {
-            loader: require.resolve('./src/loaders/my-loader')
-          }
+          }*/
         ]
       //}]
     };

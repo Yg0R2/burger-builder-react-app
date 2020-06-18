@@ -7,13 +7,29 @@ module.exports.pitch = function (request) {
   const requestString = loaderUtils.stringifyRequest(this, "!!" + request);
   console.log("[my-loader]", requestString, loaderUtils.getOptions(this));
 
-  return `var content = require(${loaderUtils.stringifyRequest(this, `!!${request}`)});
+  return `if(module.hot) {
+    var content = require(${requestString});
+
+    if(typeof content === 'string') {
+      content = [[module.id, content, '']];
+    }
+
+    var style = document.createElement('style');
+    style.setAttribute('type', 'text/css');
+    style.textContent = content;
+    
+    document.getElementById('root').appendChild(style);
+
+    console.log(content);
+  }`
+  //return `module.exports = {}`
+  /*return `var content = require(${loaderUtils.stringifyRequest(this, `!!${request}`)});
   
   if (typeof content === 'string') {
     content = [[module.id, content, '']];
   }
 
-  module.exports = content.locals;`;
+  module.exports = content.locals || {};`;*/
 
   /*let content = JSON.stringify(require(request));
 
