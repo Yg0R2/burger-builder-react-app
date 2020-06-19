@@ -8,12 +8,16 @@ const path = require('path');
 //Just file name
 module.exports.pitch = function(remainingRequest, precedingRequest, data) {
 
-  return `var content = require(${loaderUtils.stringifyRequest(this, `!!${remainingRequest}`)});
-    if (typeof content === 'string') {
-      content = [[module.id, content, '']];
-    }
-    console.log(content);
-    module.exports = content.locals || {};`;
+  return `
+var api = require(${loaderUtils.stringifyRequest(this, `!${path.join(__dirname, 'addStyles.js')}`)});
+var content = require(${loaderUtils.stringifyRequest(this, `!!${remainingRequest}`)});
+if (typeof content === 'string') {
+  content = [[module.id, content, '']];
+}
+
+api(content, {});
+
+module.exports = content.locals || {};`;
 }
 
 // Content

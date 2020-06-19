@@ -7,20 +7,20 @@ module.exports = {
     configure: {
       module: {
         rules: [
-          {
-            test: /\.css$/i,
+          /*{
+            test: /\.css$/,
             use: [//'style-loader', 'css-loader'
-              /*'style-loader',
+              //'style-loader',
+              {
+                loader: path.resolve('./src/loaders/my-loader'),
+              },
               {
                 loader: 'css-loader',
                 options: {
                   importLoaders: 1,
                   sourceMap: false
                 }
-              },*/
-              /*{
-                loader: path.resolve('./src/loaders/my-loader'),
-              },*/
+              },
               /*{
                 loader: 'postcss-loader',
                 options: {
@@ -41,9 +41,9 @@ module.exports = {
                   sourceMap: false
                 }
               }*/
-            ],
+            //],
             //sideEffects: true
-          }
+          //}
         ]
       }
     }
