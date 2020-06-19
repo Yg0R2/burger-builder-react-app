@@ -5,11 +5,19 @@ const validateOptions = require('schema-utils');
 const styleLoader = require("style-loader");
 const path = require('path');
 
-/*module.exports.pitch = function(remainingRequest, precedingRequest, data) {
-  return `console.log("hihi")`;
-}*/
+//Just file name
+module.exports.pitch = function(remainingRequest, precedingRequest, data) {
 
-module.exports = function loader(content, map, meta) {
+  return `var content = require(${loaderUtils.stringifyRequest(this, `!!${remainingRequest}`)});
+    if (typeof content === 'string') {
+      content = [[module.id, content, '']];
+    }
+    console.log(content);
+    module.exports = content.locals || {};`;
+}
+
+// Content
+/*module.exports =*/ function loader(content, map, meta) {
   const options = this.getOptions || {}
   this.cacheable(options.flag = true)
 
@@ -19,7 +27,7 @@ module.exports = function loader(content, map, meta) {
 
   //document.createElement('div');
 
-  return callback(null, "", map);
+  return callback(null, content, map);
   //return callback(null, content, map);
   /*require("postcss")()
     .process(content, {})
