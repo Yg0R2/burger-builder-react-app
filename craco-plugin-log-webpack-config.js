@@ -1,18 +1,10 @@
 const cssRegex = /\.css$/;
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   overrideWebpackConfig: ({ webpackConfig, cracoConfig, pluginOptions, context: { env, paths } }) => {
-    const isEnvProduction = env === 'production';
-
     const cssRule = {
-      //oneOf: [{
         test: cssRegex,
         use: [
-          //'style-loader',
-          /*{
-            loader: MiniCssExtractPlugin.loader
-          },*/
           {
             loader: './src/loaders/my-loader'
           },
@@ -20,33 +12,14 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
+              modules: {
+                auto: true
+              },
               sourceMap: false
             }
           },
-          // CSS only
-          /*{
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: () => [
-                require('postcss-flexbugs-fixes'),
-                require('postcss-preset-env')({
-                  autoprefixer: {
-                    flexbox: 'no-2009',
-                  },
-                  stage: 3,
-                }),
-                // Adds PostCSS Normalize as the reset css with default options,
-                // so that it honors browserslist config in package.json
-                // which in turn let's users customize the target behavior as per their needs.
-                require('postcss-normalize')
-              ],
-              sourceMap: false
-            }
-          }*/
         ],
         sideEffects: true
-      //}]
     };
 
     const oneOfRule = webpackConfig.module.rules.find(rule => (
@@ -63,7 +36,6 @@ module.exports = {
       webpackConfig.module.rules = [
         cssRule,
         ...webpackConfig.module.rules,
-        //cssRule
       ];
     }
 

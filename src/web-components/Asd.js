@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './Asd.modules.css';
+import styles from './Asd.module.css';
 
 const asd = () => {
   return (

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import exportedStyles from '../loaders/exports';
 import Asd from './Asd';
-import styles from './ReactWebComponent.css';
+import styles from './ReactWebComponent.module.css';
 import Counter from "../containers/Counter/Counter";
 
 class ReactWebComponent extends React.Component {
@@ -15,7 +15,7 @@ class ReactWebComponent extends React.Component {
 
     return (
       <div className="wrapper" style={style}>
-        <div className="welcome">hello</div>
+        <div className={styles.welcome}>hello</div>
         <Asd />
       </div>
     );
