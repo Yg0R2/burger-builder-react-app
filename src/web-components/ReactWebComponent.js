@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './ReactWebComponent.css';
+import exportedStyles from '../loaders/exports';
+import Asd from './Asd';
+import styles from './ReactWebComponent.css';
+import Counter from "../containers/Counter/Counter";
 
 class ReactWebComponent extends React.Component {
 
@@ -13,6 +16,7 @@ class ReactWebComponent extends React.Component {
     return (
       <div className="wrapper" style={style}>
         <div className="welcome">hello</div>
+        <Asd />
       </div>
     );
   }
@@ -25,8 +29,15 @@ const reactRoot = document.createElement('div');
 // Append react root to shadow root
 shadowRoot.appendChild(reactRoot);
 
-//ReactWebComponent.create(<Index />, 'auth-web-component', true)
-ReactDOM.render(<ReactWebComponent />, shadowRoot)
+ReactDOM.render(<ReactWebComponent />, shadowRoot, () => asd())
 
-//customElements.define('react-web-component', ReactWebComponent);
-//ReactDOM.render(<ReactWebComponent />);
+function asd() {
+  const styleElement = document.createElement('style')
+  Object.entries(exportedStyles.styleElements)
+    .map(value => value[1])
+    .forEach(style => document.querySelector('react-web-component').shadowRoot.appendChild(style));
+  //styleElement.innerHTML = exportedStyles.styleElements;
+  //shadowRoot.appendChild(styleElement);
+
+  //document.querySelector('react-web-component').shadowRoot.appendChild(styleElement);
+}
