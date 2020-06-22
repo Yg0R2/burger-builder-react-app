@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "react-scripts build",
+    "build": "craco build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
@@ -30,6 +30,8 @@
   "devDependencies": {
     "@craco/craco": "^5.6.4",
     "css-loader": "^3.6.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "react-web-component": "^2.0.1",
     "react-web-component-style-loader": "^0.1.4-alpha",
     "style-loader": "^1.2.1"
   }

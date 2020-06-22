@@ -1,13 +1,18 @@
 const cssRegex = /\.css$/;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   overrideWebpackConfig: ({ webpackConfig, cracoConfig, pluginOptions, context: { env, paths } }) => {
+    const isEnvProduction = env === 'production';
 
     const cssRule = {
       //oneOf: [{
         test: cssRegex,
         use: [
           //'style-loader',
+          /*{
+            loader: MiniCssExtractPlugin.loader
+          },*/
           {
             loader: './src/loaders/my-loader'
           },

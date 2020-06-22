@@ -1,4 +1,5 @@
 module.exports = (list = [], options = {}) => {
+  //console.log("here", list)
   for (let i = 0; i < list.length; i++) {
     const item = list[i];
     const obj = {
@@ -18,7 +19,12 @@ function addStyle(obj, options) {
   /*Object.entries(options.attributes || {})
     .map(([name, value]) => style.setAttribute(name, value));*/
 
-  const target = document.querySelector('body');
 
-  target.appendChild(style);
+  getTarget().appendChild(style);
+}
+
+function getTarget() {
+  const root = document.querySelector('react-web-component');
+
+  return root;
 }

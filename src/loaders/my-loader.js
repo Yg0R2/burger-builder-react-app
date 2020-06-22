@@ -8,6 +8,12 @@ const path = require('path');
 //Just file name
 module.exports.pitch = function(remainingRequest, precedingRequest, data) {
 
+  console.log("remainingRequest", remainingRequest);
+  console.log("precedingRequest", precedingRequest);
+  console.log("data", data);
+  //console.log(require(loaderUtils.stringifyRequest(this, `!!${remainingRequest}`)));
+
+
   return `
 var api = require(${loaderUtils.stringifyRequest(this, `!${path.join(__dirname, 'addStyles.js')}`)});
 var content = require(${loaderUtils.stringifyRequest(this, `!!${remainingRequest}`)});
