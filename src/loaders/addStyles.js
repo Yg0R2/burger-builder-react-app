@@ -1,21 +1,22 @@
 const exportedStyles = require('./exports');
 
-module.exports = (list = [], options = {}) => {
-  for (let i = 0; i < list.length; i++) {
-    const item = list[i];
+module.exports = (styles = [], options = {}) => {
+  for (let i = 0; i < styles.length; i++) {
+    const style = styles[i];
+
     const obj = {
-      css: item[1],
-      media: item[2],
-      sourceMap: item[3],
+      css: style[1],
+      media: style[2],
+      sourceMap: style[3]
     };
 
     addStyle(obj, options);
   }
 }
 
-function addStyle(obj, options) {
-  const style = document.createElement('style');
-  style.innerHTML = obj.css;
+function addStyle(obj) {
+  const styleElement = document.createElement('style');
+  styleElement.innerHTML = obj.css;
 
-  exportedStyles.styleElements.push(style);
+  exportedStyles.styleElements.push(styleElement);
 }
