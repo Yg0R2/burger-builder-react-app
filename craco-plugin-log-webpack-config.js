@@ -6,7 +6,7 @@ module.exports = {
         test: cssRegex,
         use: [
           {
-            loader: './src/loaders/my-loader'
+            loader: './src/loaders/my-style-loader'
           },
           {
             loader: 'css-loader',
@@ -22,14 +22,13 @@ module.exports = {
         sideEffects: true
     };
 
-    const oneOfRule = webpackConfig.module.rules.find(rule => (
-      typeof rule.oneOf !== 'undefined'
-    ));
+    const oneOfRules = webpackConfig.module.rules
+      .find(rules => (typeof rules.oneOf !== 'undefined'));
 
-    if (oneOfRule) {
-      oneOfRule.oneOf = [
+    if (oneOfRules) {
+      oneOfRules.oneOf = [
         cssRule,
-        ...oneOfRule.oneOf
+        ...oneOfRules.oneOf
       ];
     }
     else {
@@ -39,13 +38,8 @@ module.exports = {
       ];
     }
 
-    if (pluginOptions.preText) {
-      console.log(pluginOptions.preText);
-    }
-
     //console.log(JSON.stringify(webpackConfig, null, 4));
 
-    // Always return the config object.
     return webpackConfig;
   }
 };

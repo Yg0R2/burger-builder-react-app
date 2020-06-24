@@ -1,4 +1,4 @@
-const exportedStyles = require('./exports');
+const store = require('./store');
 
 module.exports = (styles = [], options = {}) => {
   for (let i = 0; i < styles.length; i++) {
@@ -18,5 +18,5 @@ function addStyle(obj) {
   const styleElement = document.createElement('style');
   styleElement.innerHTML = obj.css;
 
-  exportedStyles.styleElements.push(styleElement);
+  store.styleElements.push(styleElement);
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import exportedStyles from '../loaders/exports';
+import exportedStyles from '../loaders/store';
 import Asd from './Asd';
 import styles from './ReactWebComponent.module.css';
 
