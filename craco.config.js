@@ -1,10 +1,12 @@
 const logWebpackConfigPlugin = require("./craco-plugin-log-webpack-config");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MyPlugin = require('./src/plugins/MyPlugin');
 
 module.exports = {
   webpack: {
     plugins: [
-      new MiniCssExtractPlugin()
+      new MyPlugin({ options: '' })
     ],
     configure: {
       module: {

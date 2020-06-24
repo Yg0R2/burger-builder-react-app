@@ -1,4 +1,5 @@
 const store = {
+  scriptElements: [],
   styleElements: []
 };
 

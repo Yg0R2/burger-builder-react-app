@@ -1,25 +1,35 @@
 const cssRegex = /\.css$/;
+const scriptRegex = /\.(js|jsx)$/;
 
 module.exports = {
   overrideWebpackConfig: ({ webpackConfig, cracoConfig, pluginOptions, context: { env, paths } }) => {
     const cssRule = {
-        test: cssRegex,
-        use: [
-          {
-            loader: './src/loaders/my-style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              modules: {
-                auto: true
-              },
-              sourceMap: false
-            }
-          },
-        ],
-        sideEffects: true
+      test: cssRegex,
+      use: [
+        {
+          loader: './src/loaders/my-style-loader'
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+            modules: {
+              auto: true
+            },
+            sourceMap: false
+          }
+        },
+      ],
+      sideEffects: true
+    };
+
+    const scriptRule = {
+      test: scriptRegex,
+      use: [
+        {
+          loader: './src/loaders/my-script-loader'
+        }
+      ]
     };
 
     const oneOfRules = webpackConfig.module.rules
@@ -28,12 +38,14 @@ module.exports = {
     if (oneOfRules) {
       oneOfRules.oneOf = [
         cssRule,
+        //scriptRule,
         ...oneOfRules.oneOf
       ];
     }
     else {
       webpackConfig.module.rules = [
         cssRule,
+        //scriptRule,
         ...webpackConfig.module.rules,
       ];
     }
